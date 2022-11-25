@@ -14,5 +14,10 @@ namespace DesignPatterns_HomeTask_PageObject.PageObjects
         {
             WebDriver.GetInstance().Navigate().GoToUrl(url);
         }
+
+        public void closeBrowser()
+        {
+            WebDriver.GetInstance().Quit();
+        }
     }
 }

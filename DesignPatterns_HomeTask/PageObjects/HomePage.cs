@@ -9,17 +9,25 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns_HomeTask_PageObject.PageObjects
 {
-    internal class HomePage : Base
+    internal class HomePage
     {
-        public IWebElement Email => WebDriver.GetInstance().FindElement(By.XPath("//*[@id='philadelphia-field-email']"));
-        public IWebElement SubmitBtn => WebDriver.GetInstance().FindElement(By.XPath("//*[@id='philadelphia-field-submit']"));
-        public IWebElement InsProjectTab => WebDriver.GetInstance().FindElement(By.XPath("//a[text()='Insurance Project']"));
-        public IWebElement Category => WebDriver.GetInstance().FindElement(By.XPath("//li[@class='item118 parent']"));
-        public IWebElement Course => WebDriver.GetInstance().FindElement(By.XPath("//li[@class='item121']"));
+        protected Base baseClass;
+
+        public HomePage(Base _baseClass)
+        {
+            this.baseClass = _baseClass;
+        }
+
+        public static IWebElement Email => WebDriver.GetInstance().FindElement(By.XPath("//*[@id='philadelphia-field-email']"));
+        public static IWebElement SubmitBtn => WebDriver.GetInstance().FindElement(By.XPath("//*[@id='philadelphia-field-submit']"));
+        public static IWebElement InsProjectTab => WebDriver.GetInstance().FindElement(By.XPath("//a[text()='Insurance Project']"));
+        public static IWebElement Category => WebDriver.GetInstance().FindElement(By.XPath("//li[@class='item118 parent']"));
+        public static IWebElement Course => WebDriver.GetInstance().FindElement(By.XPath("//li[@class='item121']"));
 
 
         public void SubmitEmail()
         {
+            baseClass.openBrowser();
             Email.Clear();
             Email.SendKeys("abc123@gmail.com");
 
@@ -32,23 +40,27 @@ namespace DesignPatterns_HomeTask_PageObject.PageObjects
             Console.WriteLine(AlertText);
             WebDriver.GetInstance().Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(50);
             AlertBox.Accept();
+            baseClass.closeBrowser();
         }
 
         public void SelectProject()
         {
+            baseClass.openBrowser();
             WebDriver.GetInstance().Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(50);
             InsProjectTab.Click();
             WebDriver.GetInstance().Navigate().Back();
+            baseClass.closeBrowser();
 
         }
 
         public void SelectCourse()
         {
-
+            baseClass.openBrowser();
             WebDriver.GetInstance().Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(50);
             Actions action = new Actions(WebDriver.GetInstance());
             action.MoveToElement(Category).Perform();
             action.MoveToElement(Course).Click().Perform();
+            baseClass.closeBrowser();
         }
     }
 }

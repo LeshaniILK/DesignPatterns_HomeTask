@@ -25,9 +25,5 @@ namespace DesignPatterns_HomeTask_PageObject
             return driver;
         }
 
-        public static void CloseBrowser()
-        {
-            driver.Quit();
-        }
     }
 }
