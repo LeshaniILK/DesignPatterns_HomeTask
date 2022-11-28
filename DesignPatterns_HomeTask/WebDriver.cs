@@ -12,7 +12,12 @@ namespace DesignPatterns_HomeTask_PageObject
 {
     internal class WebDriver
     {
-        public static IWebDriver? driver;
+        private static IWebDriver? driver;
+
+        private WebDriver(IWebDriver _driver)
+        {
+            driver = _driver;
+        }
         public static IWebDriver GetInstance()
         {
             if (driver == null)
