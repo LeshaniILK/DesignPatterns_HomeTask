@@ -24,14 +24,14 @@ namespace DesignPatterns_HomeTask_PageObject
         public void SelectProjectTest()
         {
             homePage.SelectProject();
-            //Assert.That(WebDriver.GetInstance().Title, Is.EqualTo("Insurance Broker System - Login"));
+            Assert.That(WebDriver.GetInstance().Title, Is.EqualTo("Insurance Broker System - Login"));
         }
 
         [Test, Order(4)]
         public void SelectCourseTest()
         {
             homePage.SelectCourse();
-            //Assert.That(WebDriver.GetInstance().Title, Is.EqualTo("Selenium Tutorial"));
+            Assert.That(WebDriver.GetInstance().Title, Is.EqualTo("Selenium Tutorial"));
         }
 
     }
